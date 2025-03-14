@@ -5,6 +5,7 @@ import * as SignUp from "@clerk/elements/sign-up";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { useId } from "react";
+import Image from "next/image"
 
 export default function Page() {
   const id = useId();
@@ -16,23 +17,13 @@ export default function Page() {
         className="w-full space-y-6 rounded-2xl bg-background px-4 py-10 border sm:w-96 sm:px-8"
       >
         <header className="text-center">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 40 40"
-            className="mx-auto size-10 text-zinc-950"
-            aria-hidden
-          >
-            <mask id="a" width="40" height="40" x="0" y="0" maskUnits="userSpaceOnUse">
-              <circle cx="20" cy="20" r="20" fill="#D9D9D9" />
-            </mask>
-            <g fill="currentColor" mask="url(#a)">
-              <path
-                d="M43.5 3a.5.5 0 0 0 0-1v1Zm0-1h-46v1h46V2ZM43.5 8a.5.5 0 0 0 0-1v1Zm0-1h-46v1h46V7ZM43.5 13a.5.5 0 0 0 0-1v1Zm0-1h-46v1h46v-1ZM43.5 18a.5.5 0 0 0 0-1v1Zm0-1h-46v1h46v-1ZM43.5 23a.5.5 0 0 0 0-1v1Zm0-1h-46v1h46v-1ZM43.5 28a.5.5 0 0 0 0-1v1Zm0-1h-46v1h46v-1ZM43.5 33a.5.5 0 0 0 0-1v1Zm0-1h-46v1h46v-1ZM43.5 38a.5.5 0 0 0 0-1v1Zm0-1h-46v1h46v-1Z" />
-              <path
-                d="M27 3.5a1 1 0 1 0 0-2v2Zm0-2h-46v2h46v-2ZM25 8.5a1 1 0 1 0 0-2v2Zm0-2h-46v2h46v-2ZM23 13.5a1 1 0 1 0 0-2v2Zm0-2h-46v2h46v-2ZM21.5 18.5a1 1 0 1 0 0-2v2Zm0-2h-46v2h46v-2ZM20.5 23.5a1 1 0 1 0 0-2v2Zm0-2h-46v2h46v-2ZM22.5 28.5a1 1 0 1 0 0-2v2Zm0-2h-46v2h46v-2ZM25 33.5a1 1 0 1 0 0-2v2Zm0-2h-46v2h46v-2ZM27 38.5a1 1 0 1 0 0-2v2Zm0-2h-46v2h46v-2Z" />
-            </g>
-          </svg>
+          <Image
+            src="/logo_dark.png"
+            alt="Logo"
+            width={40}
+            height={40}
+            className="mx-auto size-14 rounded-sm"
+          />
           <h1 className="mt-4 text-xl font-semibold tracking-tight text-primary">
             Crea un account
           </h1>
@@ -41,9 +32,9 @@ export default function Page() {
         <div className="flex items-center gap-2">
           <Checkbox id={id} />
           <Label htmlFor={id}>
-            I agree to the{" "}
-            <a className="underline" href="https://originui.com" target="_blank">
-              terms of service
+            Accetto i{" "}
+            <a className="underline" href="#">
+              Termini e Condizioni
             </a>
           </Label>
         </div>
@@ -52,17 +43,23 @@ export default function Page() {
             name="google"
             className="flex w-full items-center justify-center gap-x-3 rounded-md bg-primary px-3.5 py-2 text-sm font-medium text-primary-foreground outline-none hover:bg-gradient-to-b hover:from-white/5 hover:to-white/5 focus-visible:outline-[1.5px] focus-visible:outline-offset-2 focus-visible:outline-white cursor-pointer"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 17 16"
-              className="w-4"
-              aria-hidden
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 24 24"
+                 className="w-4"
             >
               <path
-                fill="currentColor"
-                d="M8.82 7.28v2.187h5.227c-.16 1.226-.57 2.124-1.192 2.755-.764.765-1.955 1.6-4.035 1.6-3.218 0-5.733-2.595-5.733-5.813 0-3.218 2.515-5.814 5.733-5.814 1.733 0 3.005.685 3.938 1.565l1.538-1.538C12.998.96 11.256 0 8.82 0 4.41 0 .705 3.591.705 8s3.706 8 8.115 8c2.382 0 4.178-.782 5.582-2.24 1.44-1.44 1.893-3.475 1.893-5.111 0-.507-.035-.978-.115-1.369H8.82Z"
-              />
+                d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                fill="#4285F4" />
+              <path
+                d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                fill="#34A853" />
+              <path
+                d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                fill="#FBBC05" />
+              <path
+                d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                fill="#EA4335" />
+              <path d="M1 1h22v22H1z" fill="none" />
             </svg>
             Registrati con Google
           </Clerk.Connection>
