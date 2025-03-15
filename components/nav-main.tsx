@@ -1,9 +1,6 @@
 "use client"
 
 import {
-  Collapsible,
-} from "@/components/ui/collapsible"
-import {
   SidebarGroup,
   SidebarGroupLabel,
   SidebarMenu,

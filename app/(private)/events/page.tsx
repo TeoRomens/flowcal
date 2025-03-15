@@ -5,13 +5,16 @@ import { formatEventDescription } from "@/lib/formatters";
 import { cn } from "@/lib/utils";
 import CopyButton from "@/components/copy-button";
 import * as React from "react";
+import {auth} from "@clerk/nextjs/server";
 
 export default async function Page() {
+  const clerk = await auth();
 
   const supabase = await createClient();
   const { data: events } = await supabase
     .from("events")
-    .select();
+    .select()
+    .eq("clerk_user", clerk.userId);
 
   return (
     <>
