@@ -32,7 +32,7 @@ export async function saveSchedule(
     console.log(existingScheduleError);
     return { error: true };
   }
-  console.log("Existing schedule: " + existingSchedule)
+  //console.log("Existing schedule: " + existingSchedule)
 
   let scheduleId = existingSchedule[0]?.id;
 
@@ -47,7 +47,7 @@ export async function saveSchedule(
       console.log(insertError);
       return { error: true };
     }
-    console.log("Inserted schedule: " + newSchedule);
+    //console.log("Inserted schedule: " + newSchedule);
 
     scheduleId = newSchedule.id;
 

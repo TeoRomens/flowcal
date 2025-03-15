@@ -28,7 +28,7 @@ export default async function BookingPage({
 
   return (
     <>
-      <h1 className="text-[32px] font-semibold mb-4 text-primary tracking-tight">Prenota con {fullName}</h1>
+      <h1 className="text-2xl sm:text-[32px] font-semibold mb-4 text-primary tracking-tight">Prenota con {fullName}</h1>
       <Label>Seleziona un servizio</Label>
       <div className="mt-4 grid gap-3 grid-cols-2 max-h-[70vh] overflow-y-auto">
         {events?.map((item) => (

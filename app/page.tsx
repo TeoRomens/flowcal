@@ -3,10 +3,18 @@
 import { BackgroundLines } from "@/components/ui/background-lines";
 import { Button } from "@/components/ui/button";
 import { SignInButton, SignUpButton } from "@clerk/nextjs";
+import Image from "next/image";
 
 export default function Home() {
   return (
-    <BackgroundLines className="flex flex-col items-center justify-center w-full px-4">
+    <BackgroundLines className="flex flex-col items-center h-screen justify-center px-4">
+      <Image
+          src="/logo_dark.png"
+          alt="Logo"
+          width={40}
+          height={40}
+          className="mx-auto size-14 rounded-sm z-10"
+      />
       <h2
         className="bg-clip-text text-transparent text-center bg-gradient-to-b from-neutral-900 to-neutral-700 dark:from-neutral-600 dark:to-white text-6xl md:text-7xl lg:text-8xl font-sans py-6 md:py-8 relative z-20 font-bold tracking-tight">
         FlowCal.

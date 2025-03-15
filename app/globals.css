@@ -15,7 +15,7 @@
   --popover-foreground: oklch(0.141 0.005 285.823); /* --color-zinc-950 */
   --primary: oklch(0.21 0.006 285.885); /* --color-zinc-900 */
   --primary-foreground: oklch(0.985 0 0); /* --color-zinc-50 */
-  --secondary: oklch(0.35 0 275) ;
+  --secondary: oklch(44.19% 0.0146 285.79) ;
   --secondary-foreground: oklch(0.967 0.001 286.375);
   --muted: oklch(0.967 0.001 286.375); /* --color-zinc-100 */
   --muted-foreground: oklch(0.55 0.01 286); /* --color-zinc-500 */
@@ -36,7 +36,7 @@
   --sidebar-foreground: oklch(0.141 0.005 285.823); /* --color-zinc-950 */
   --sidebar-primary: oklch(0.21 0.006 285.885); /* --color-zinc-900 */
   --sidebar-primary-foreground: oklch(0.985 0 0); /* --color-zinc-50 */
-  --sidebar-accent: oklch(0.967 0.001 286.375); /* --color-zinc-100 */
+  --sidebar-accent: oklch(95.51% 0 102.07);
   --sidebar-accent-foreground: oklch(0.21 0.006 285.885); /* --color-zinc-900 */
   --sidebar-border: oklch(0.92 0.004 286.32); /* --color-zinc-200 */
   --sidebar-ring: oklch(0.871 0.006 286.286); /* --color-zinc-300 */
@@ -51,7 +51,7 @@
   --popover-foreground: oklch(0.985 0 0); /* --color-zinc-50 */
   --primary: oklch(0.985 0 0); /* --color-zinc-50 */
   --primary-foreground: oklch(0.21 0.006 285.885); /* --color-zinc-900 */
-  --secondary: oklch(0.985 0 0); /* --color-zinc-50 */
+  --secondary: oklch(81.24% 0.0069 286.24);
   --secondary-foreground: oklch(0.274 0.006 286.033); /* --color-zinc-800 */
   --muted: oklch(0.21 0.006 285.885); /* --color-zinc-900 */
   --muted-foreground: oklch(0.65 0.01 286); /* Between zinc-400 and zinc-500 */
@@ -71,12 +71,11 @@
   --sidebar-foreground: oklch(0.985 0 0); /* --color-zinc-50 */
   --sidebar-primary: oklch(0.488 0.243 264.376); /* --color-blue-700 */
   --sidebar-primary-foreground: oklch(0.985 0 0); /* --color-zinc-50 */
-  --sidebar-accent: oklch(0.269 0 0); /* --color-zinc-800 */
+  --sidebar-accent: oklch(33.29% 0 0);
   --sidebar-accent-foreground: oklch(0.985 0 0); /* --color-zinc-50 */
   --sidebar-border: oklch(0.274 0.006 286.033); /* --color-zinc-800 */
   --sidebar-ring: oklch(0.442 0.017 285.786); /* --color-zinc-600 */
 }
-
 
 @theme inline {
   --font-sans: var(--font-sans);

@@ -15,14 +15,19 @@ export default async function Page() {
 
   return (
     <>
-      <h1 className="text-[32px] font-semibold mb-3 lg:mb-4 text-primary tracking-tight">Eventi</h1>
-      <p className="text-secondary text-[16px] mb-6">The most basic setup for a drawer.</p>
+      <h1 className="text-[32px] font-semibold mb-3 lg:mb-4 text-primary tracking-tight">
+        Eventi
+      </h1>
+      <p className="text-secondary text-[16px] mb-6">
+        The most basic setup for a drawer.
+      </p>
 
       <Link href={"/events/new"}>
         <Button className="rounded-full">
           Crea Evento
         </Button>
       </Link>
+
       {events && events.length > 0 ? (
         <ul className="my-6">
           {events.map((event) => (
