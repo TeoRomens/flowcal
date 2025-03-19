@@ -62,9 +62,9 @@ export function ScheduleForm({
     const data = await saveSchedule(values)
 
     if (data?.error) {
-      toast.error("Errore")
+      toast.error("Errore nell'aggiornamento disponibilità. Si prega di riprovare più tardi.")
     } else {
-      toast.success("Schedule salvata correttamente!")
+      toast.success("Disponibilità aggiornata correttamente!")
     }
   }
 

@@ -1,12 +1,12 @@
 "use server"
 
-import { getValidTimesFromSchedule } from "@/lib/getValidTimesFromSchedule"
-import { meetingActionSchema } from "@/schema/meetings"
-import { z } from "zod"
-import { createCalendarEvent } from "../googleCalendar"
-import { redirect } from "next/navigation"
-import { fromZonedTime } from "date-fns-tz"
-import { createClient } from "@/lib/supabase/server";
+import {getValidTimesFromSchedule} from "@/lib/getValidTimesFromSchedule"
+import {meetingActionSchema} from "@/schema/meetings"
+import {z} from "zod"
+import {createCalendarEvent} from "../googleCalendar"
+import {redirect, RedirectType} from "next/navigation"
+import {fromZonedTime} from "date-fns-tz"
+import {createClient} from "@/lib/supabase/server";
 
 export async function createMeeting(
   unsafeData: z.infer<typeof meetingActionSchema>
@@ -14,7 +14,6 @@ export async function createMeeting(
   const { success, data } = meetingActionSchema.safeParse(unsafeData)
 
   if (!success) return { error: true }
-  console.log("Parsing success")
 
   const supabase = await createClient()
   const { data: event, error } = await supabase
@@ -26,13 +25,11 @@ export async function createMeeting(
     .single()
 
   if (event == null || error) return { error: true }
-  console.log("Event fetched")
 
   const startInTimezone = fromZonedTime(data.startTime, "Europe/Rome")
 
   const validTimes = await getValidTimesFromSchedule([startInTimezone], event)
   if (validTimes.length === 0) return { error: true }
-  console.log("Valid times ok")
 
   await createCalendarEvent({
     ...data,
@@ -42,8 +39,7 @@ export async function createMeeting(
   })
 
   redirect(
-    `/book/${data.clerkUserId}/${
-      data.eventId
-    }/success?startTime=${data.startTime.toISOString()}`
+    `/book/${data.clerkUserId}/${data.eventId}/success?startTime=${data.startTime.toISOString()}`,
+      RedirectType.replace
   )
 }

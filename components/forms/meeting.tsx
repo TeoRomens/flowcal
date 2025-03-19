@@ -16,9 +16,7 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import { Textarea } from "../ui/textarea";
 import { meetingFormSchema } from "@/schema/meetings";
-import {
-  formatTimeString,
-} from "@/lib/formatters";
+import { formatTimeString } from "@/lib/formatters";
 import { useId } from "react";
 import { createMeeting } from "@/server/actions/meetings";
 import { Calendar } from "@/components/ui/calendar";
@@ -52,7 +50,7 @@ export function MeetingForm({
     });
 
     if (data?.error) {
-      toast.error("Errore");
+      toast.error("Errore durante la prenotazione. Si prega di riprovare più tardi.");
     }
   }
 

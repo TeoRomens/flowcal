@@ -28,10 +28,6 @@ export async function getValidTimesFromSchedule(
   const start = timesInOrder[0]
   const end = timesInOrder.at(-1)
 
-  console.log("start ", start)
-  console.log("end", end)
-  console.log(event)
-
   if (start == null || end == null) return []
 
   const supabase = await createClient()
@@ -61,12 +57,10 @@ export async function getValidTimesFromSchedule(
     a => a.day
   )
 
-  console.log("getCalendarEventTimes: " + event.clerk_user + start + end)
   const eventTimes = await getCalendarEventTimes(event.clerk_user, {
     start,
     end,
   })
-  console.log("eventTimes: " + eventTimes)
 
   return timesInOrder.filter(intervalDate => {
     const availabilities = getAvailabilities(

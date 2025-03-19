@@ -28,7 +28,9 @@ export default async function SchedulePage() {
 
   return (
       <>
-        <h1 className="text-[32px] font-semibold mb-3 lg:mb-4 text-primary tracking-tight">Schedule</h1>
+        <h1 className="text-[32px] font-semibold mb-3 lg:mb-4 text-primary tracking-tight">
+          Disponibilità
+        </h1>
         <p className="text-secondary text-[16px] mb-6">
           Configura la tua disponibilità selezionando giorni e orari in cui sei libero e permettere agli utenti di
           prenotare con te.
