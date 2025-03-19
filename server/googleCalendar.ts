@@ -21,6 +21,11 @@ export async function getCalendarEventTimes(
     auth: oAuthClient,
   })
 
+  if(events.status >= 300) {
+    console.error("Fetching calendar events fail.")
+    return []
+  }
+
   return (
     events.data.items
       ?.map(event => {

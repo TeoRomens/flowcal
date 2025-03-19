@@ -29,6 +29,8 @@ export async function getValidTimesFromSchedule(
   const start = timesInOrder[0]
   const end = timesInOrder.at(-1)
 
+  console.log("start: " + start)
+  console.log("end: " + end)
   if (start == null || end == null) return []
 
   const supabase = await createClient()
@@ -50,8 +52,10 @@ export async function getValidTimesFromSchedule(
 
   if (schedule == null || error) {
     Sentry.captureException(Error("Schedule fetching failed"))
+    console.error("Schedule fetching failed")
     return []
   }
+  console.error("Schedule fetching ok")
 
   const groupedAvailabilities = Object.groupBy(
     schedule.schedule_availability,
