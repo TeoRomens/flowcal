@@ -55,7 +55,7 @@ export async function getValidTimesFromSchedule(
     console.error("Schedule fetching failed")
     return []
   }
-  console.error("Schedule fetching ok")
+  console.log("Schedule fetching ok")
 
   const groupedAvailabilities = Object.groupBy(
     schedule.schedule_availability,
@@ -66,6 +66,8 @@ export async function getValidTimesFromSchedule(
     start,
     end,
   })
+
+  console.log("EventTimes: " + eventTimes)
 
   return timesInOrder.filter(intervalDate => {
     const availabilities = getAvailabilities(

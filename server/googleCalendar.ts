@@ -23,7 +23,6 @@ export async function getCalendarEventTimes(
 
   if(events.status >= 300) {
     console.error("Fetching calendar events fail.")
-    return []
   }
 
   return (
