@@ -7,13 +7,17 @@ import {createCalendarEvent} from "../googleCalendar"
 import {redirect, RedirectType} from "next/navigation"
 import {fromZonedTime} from "date-fns-tz"
 import {createClient} from "@/lib/supabase/server";
+import * as Sentry from "@sentry/nextjs";
 
 export async function createMeeting(
   unsafeData: z.infer<typeof meetingActionSchema>
 ) {
   const { success, data } = meetingActionSchema.safeParse(unsafeData)
 
-  if (!success) return { error: true }
+  if (!success) {
+    Sentry.captureException(Error("Meeting parsing failed"))
+    return { error: true }
+  }
 
   const supabase = await createClient()
   const { data: event, error } = await supabase
@@ -24,7 +28,10 @@ export async function createMeeting(
     .eq("active", true)
     .single()
 
-  if (event == null || error) return { error: true }
+  if (event == null || error) {
+    Sentry.captureException(Error("Fetch event failed"))
+    return { error: true }
+  }
 
   const startInTimezone = fromZonedTime(data.startTime, "Europe/Rome")
 

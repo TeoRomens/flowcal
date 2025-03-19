@@ -3,6 +3,7 @@
 import { google } from "googleapis"
 import { addMinutes, endOfDay, startOfDay } from "date-fns"
 import { clerkClient } from "@clerk/nextjs/server";
+import * as Sentry from "@sentry/nextjs";
 
 export async function getCalendarEventTimes(
   clerkUserId: string,
@@ -62,6 +63,7 @@ export async function createCalendarEvent({
   const clerk = await clerkClient()
   const calendarUser = await clerk.users.getUser(clerkUserId)
   if (calendarUser.primaryEmailAddress == null) {
+    Sentry.captureException(Error("Clerk user has no email"))
     throw new Error("Clerk user has no email")
   }
 
@@ -73,7 +75,7 @@ export async function createCalendarEvent({
       attendees: [
         { email: guestEmail, displayName: guestName },
         {
-          email: calendarUser.primaryEmailAddress.emailAddress,
+          email: calendarUser.primaryEmailAddress?.emailAddress,
           displayName: calendarUser.fullName,
           responseStatus: "accepted",
         },
@@ -94,13 +96,13 @@ export async function createCalendarEvent({
 
 async function getOAuthClient(clerkUserId: string) {
   const clerk = await clerkClient()
-  console.log(clerkUserId)
   const token = await clerk.users.getUserOauthAccessToken(
     clerkUserId,
     "google"
   )
 
   if (token.data.length === 0 || token.data[0].token == null) {
+    Sentry.captureException(Error("OAuthToken not found."))
     return
   }
 

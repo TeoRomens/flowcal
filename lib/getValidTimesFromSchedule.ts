@@ -17,6 +17,7 @@ import {
 import { fromZonedTime } from "date-fns-tz"
 import { createClient } from "@/lib/supabase/server";
 import { Tables } from "@/lib/supabase/supabase";
+import * as Sentry from "@sentry/nextjs";
 
 export async function getValidTimesFromSchedule(
   timesInOrder: Date[],
@@ -48,7 +49,7 @@ export async function getValidTimesFromSchedule(
     .maybeSingle()
 
   if (schedule == null || error) {
-    console.log("Error fetching schedule")
+    Sentry.captureException(Error("Schedule fetching failed"))
     return []
   }
 
