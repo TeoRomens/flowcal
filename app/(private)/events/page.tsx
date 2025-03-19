@@ -22,7 +22,7 @@ export default async function Page() {
         Eventi
       </h1>
       <p className="text-secondary text-[16px] mb-6">
-        The most basic setup for a drawer.
+        Qui puoi visualizzare, modificare e gestire i tuoi eventi in modo semplice e veloce.
       </p>
 
       <Link href={"/events/new"}>
