@@ -9,12 +9,14 @@ import {Confetti} from "@/components/confetti";
 export const revalidate = 0
 
 export default async function SuccessPage({
-                                            params: {clerkUserId, eventId},
+                                            params,
                                             searchParams: {startTime},
                                           }: {
-  params: { clerkUserId: string; eventId: string }
+  params: Promise<{ clerkUserId: string; eventId: string }>
   searchParams: { startTime: string }
 }) {
+  const {clerkUserId, eventId} = await params;
+
   const supabase = await createClient()
   const {data: event} = await supabase
       .from("events")
