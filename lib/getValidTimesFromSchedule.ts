@@ -102,25 +102,25 @@ function getAvailabilities(
     | undefined
 
   if (isMonday(date)) {
-    availabilities = groupedAvailabilities.monday
+    availabilities = groupedAvailabilities.lunedì
   }
   if (isTuesday(date)) {
-    availabilities = groupedAvailabilities.tuesday
+    availabilities = groupedAvailabilities.martedì
   }
   if (isWednesday(date)) {
-    availabilities = groupedAvailabilities.wednesday
+    availabilities = groupedAvailabilities.mercoledì
   }
   if (isThursday(date)) {
-    availabilities = groupedAvailabilities.thursday
+    availabilities = groupedAvailabilities.giovedì
   }
   if (isFriday(date)) {
-    availabilities = groupedAvailabilities.friday
+    availabilities = groupedAvailabilities.venerdì
   }
   if (isSaturday(date)) {
-    availabilities = groupedAvailabilities.saturday
+    availabilities = groupedAvailabilities.sabato
   }
   if (isSunday(date)) {
-    availabilities = groupedAvailabilities.sunday
+    availabilities = groupedAvailabilities.domenica
   }
 
   if (availabilities == null) return []
