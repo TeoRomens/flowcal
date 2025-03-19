@@ -23,6 +23,8 @@ import { Calendar } from "@/components/ui/calendar";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { isSameDay } from "date-fns";
 import { toast } from "sonner";
+import Loading from "@/app/(public)/book/[clerkUserId]/[eventId]/loading";
+import { LoaderCircleIcon } from "lucide-react";
 
 export function MeetingForm({
                               validTimes,
@@ -171,6 +173,9 @@ export function MeetingForm({
             <Link href={`/book/${clerkUserId}`}>Cancel</Link>
           </Button>
           <Button disabled={form.formState.isSubmitting} type="submit">
+            {form.formState.isSubmitting &&
+              <LoaderCircleIcon className="-ms-1 animate-spin" size={16} aria-hidden="true" />
+            }
             Conferma
           </Button>
         </div>

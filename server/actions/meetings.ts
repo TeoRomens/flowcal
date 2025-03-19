@@ -15,9 +15,10 @@ export async function createMeeting(
   const { success, data } = meetingActionSchema.safeParse(unsafeData)
 
   if (!success) {
-    Sentry.captureException(Error("Meeting parsing failed"))
+    console.error("Meeting parsing failed")
     return { error: true }
   }
+  console.log("Meeting parsing success")
 
   const supabase = await createClient()
   const { data: event, error } = await supabase
@@ -29,14 +30,20 @@ export async function createMeeting(
     .single()
 
   if (event == null || error) {
-    Sentry.captureException(Error("Fetch event failed"))
+    console.error("Fetch event failed")
     return { error: true }
   }
+  console.log("Fetch event success")
 
   const startInTimezone = fromZonedTime(data.startTime, "Europe/Rome")
 
   const validTimes = await getValidTimesFromSchedule([startInTimezone], event)
-  if (validTimes.length === 0) return { error: true }
+  if (validTimes.length === 0) {
+    Sentry.captureException(Error("Valid times are empty"))
+    console.error("Valid times are empty")
+    return { error: true }
+  }
+  console.log("Valid times ok")
 
   await createCalendarEvent({
     ...data,

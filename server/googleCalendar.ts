@@ -64,8 +64,10 @@ export async function createCalendarEvent({
   const calendarUser = await clerk.users.getUser(clerkUserId)
   if (calendarUser.primaryEmailAddress == null) {
     Sentry.captureException(Error("Clerk user has no email"))
+    console.error("Clerk user has no email")
     throw new Error("Clerk user has no email")
   }
+  console.log("Clerk user email ok")
 
   const calendarEvent = await google.calendar("v3").events.insert({
     calendarId: "primary",
@@ -91,6 +93,11 @@ export async function createCalendarEvent({
     },
   })
 
+  if(calendarEvent.status >= 300) {
+    console.error("Calendar event insert error")
+  }
+  console.log("Calendar event insert ok")
+
   return calendarEvent.data
 }
 
@@ -103,8 +110,10 @@ async function getOAuthClient(clerkUserId: string) {
 
   if (token.data.length === 0 || token.data[0].token == null) {
     Sentry.captureException(Error("OAuthToken not found."))
+    console.error("OAuthToken not found.")
     return
   }
+  console.log("OAuthToken ok")
 
   const client = new google.auth.OAuth2(
     process.env.GOOGLE_OAUTH_CLIENT_ID,
