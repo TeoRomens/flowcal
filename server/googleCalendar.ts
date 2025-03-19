@@ -25,6 +25,10 @@ export async function getCalendarEventTimes(
     console.error("Fetching calendar events fail.")
   }
 
+  console.log(JSON.stringify(events))
+  console.log(start)
+  console.log(end)
+
   return (
     events.data.items
       ?.map(event => {

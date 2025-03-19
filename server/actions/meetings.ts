@@ -43,7 +43,7 @@ export async function createMeeting(
     console.error("Valid times are empty")
     return { error: true }
   }
-  console.log("Valid times ok")
+  console.log("Valid times: " + validTimes)
 
   await createCalendarEvent({
     ...data,
