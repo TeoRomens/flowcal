@@ -25,9 +25,28 @@ export async function getCalendarEventTimes(
     console.error("Fetching calendar events fail.")
   }
 
-  console.log(JSON.stringify(events))
+  console.log(JSON.stringify(events.data.items))
   console.log(start)
   console.log(end)
+
+  const result = events.data.items
+    ?.map(event => {
+      if (event.start?.date != null && event.end?.date != null) {
+        return {
+          start: startOfDay(event.start.date),
+          end: endOfDay(event.end.date),
+        }
+      }
+
+      if (event.start?.dateTime != null && event.end?.dateTime != null) {
+        return {
+          start: new Date(event.start.dateTime),
+          end: new Date(event.end.dateTime),
+        }
+      }
+    })
+    .filter(date => date != null) || []
+  console.log("result", result)
 
   return (
     events.data.items
