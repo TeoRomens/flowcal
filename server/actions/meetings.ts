@@ -37,6 +37,8 @@ export async function createMeeting(
 
   const startInTimezone = fromZonedTime(data.startTime, "Europe/Rome")
 
+  console.log("Starting timezone: ", startInTimezone)
+  console.log("event: " + event)
   const validTimes = await getValidTimesFromSchedule([startInTimezone], event)
   if (validTimes.length === 0) {
     Sentry.captureException(Error("Valid times are empty"))
