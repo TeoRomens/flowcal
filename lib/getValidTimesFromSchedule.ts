@@ -73,6 +73,7 @@ export async function getValidTimesFromSchedule(
   console.log("EventTimes: " + eventTimes)
 
   return timesInOrder.filter(intervalDate => {
+
     const availabilities = getAvailabilities(
       groupedAvailabilities,
       intervalDate,
@@ -82,6 +83,20 @@ export async function getValidTimesFromSchedule(
       start: intervalDate,
       end: addMinutes(intervalDate, event.duration),
     }
+    console.log("intervalDate: ", intervalDate)
+    console.log("availabilities: ", availabilities)
+    console.log("eventInterval: ", eventInterval)
+
+    const result = eventTimes.every(eventTime => {
+        return !areIntervalsOverlapping(eventTime, eventInterval)
+      }) &&
+      availabilities.some(availability => {
+        return (
+          isWithinInterval(eventInterval.start, availability) &&
+          isWithinInterval(eventInterval.end, availability)
+        )
+      })
+    console.log("getValidTimesFromSchedule result: ", result)
 
     return (
       eventTimes.every(eventTime => {
