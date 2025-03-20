@@ -12,7 +12,7 @@ import {
 } from "../ui/form"
 import { Input } from "../ui/input"
 import { Button } from "../ui/button"
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { DAYS_OF_WEEK } from "@/data/constants";
 import { scheduleFormSchema } from "@/schema/schedule";
 import { timeToInt } from "@/lib/utils";
@@ -47,6 +47,10 @@ export function ScheduleForm({
     },
   })
 
+  useEffect(() => {
+    console.error("Form Errors:", form.formState.errors);
+  }, [form.formState.errors]);
+
   const {
     append: addAvailability,
     remove: removeAvailability,
@@ -59,6 +63,7 @@ export function ScheduleForm({
   )
 
   async function onSubmit(values: z.infer<typeof scheduleFormSchema>) {
+    console.log("values", values)
     const data = await saveSchedule(values)
 
     if (data?.error) {

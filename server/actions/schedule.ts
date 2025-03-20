@@ -10,13 +10,13 @@ export async function saveSchedule(
 ) {
   const { userId } = await auth();
   if (!userId) {
-    console.log("Missing user id");
+    console.error("Missing user id");
     return { error: true };
   }
 
   const { success, data } = scheduleFormSchema.safeParse(unsafeData);
   if (!success) {
-    console.log("Schedule parsing error");
+    console.error("Schedule parsing error");
     return { error: true };
   }
 
@@ -29,7 +29,7 @@ export async function saveSchedule(
     .eq("clerk_user", userId)
 
   if (existingScheduleError) {
-    console.log(existingScheduleError);
+    console.error(existingScheduleError);
     return { error: true };
   }
   //console.log("Existing schedule: " + existingSchedule)
