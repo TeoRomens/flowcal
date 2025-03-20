@@ -87,7 +87,7 @@ export async function getValidTimesFromSchedule(
     console.log("availabilities: ", availabilities)
     console.log("eventInterval: ", eventInterval)
 
-    const result = eventTimes.every(eventTime => {
+    const result = ( eventTimes.every(eventTime => {
         return !areIntervalsOverlapping(eventTime, eventInterval)
       }) &&
       availabilities.some(availability => {
@@ -95,7 +95,7 @@ export async function getValidTimesFromSchedule(
           isWithinInterval(eventInterval.start, availability) &&
           isWithinInterval(eventInterval.end, availability)
         )
-      })
+      }))
     console.log("getValidTimesFromSchedule result: ", result)
 
     return (
