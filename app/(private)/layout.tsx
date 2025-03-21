@@ -6,9 +6,9 @@ import Image from "next/image";
 import * as React from "react";
 
 export const metadata: Metadata = {
-  title: "Area Riservata",
-  description: ""
-};
+  title: "Area Riservata | FlowCal",
+  description: "Accedi alla tua area riservata su FlowCal per gestire prenotazioni, disponibilità e impostazioni del tuo negozio in modo semplice e veloce.",
+}
 
 export default function PrivateLayout({
                                         children

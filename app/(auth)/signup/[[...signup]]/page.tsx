@@ -30,10 +30,9 @@ export default function Page() {
             </header>
             <Clerk.GlobalError className="block text-sm text-red-400"/>
             <div className="flex items-center gap-2">
-              <Checkbox id={id}/>
-              <Label htmlFor={id}>
-                Accetto i{" "}
-                <a className="underline" href="#">
+              <Label htmlFor={id} className="text-secondary">
+                Procedendo con la registrazione dichiari di accettare i{" "}
+                <a className="underline" href="/terms" target="_blank">
                   Termini e Condizioni
                 </a>
               </Label>
