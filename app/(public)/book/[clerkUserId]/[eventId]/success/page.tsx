@@ -6,8 +6,14 @@ import {CircleCheck} from "lucide-react";
 import {Label} from "@/components/ui/label";
 import {Confetti} from "@/components/confetti";
 import { fromZonedTime, toZonedTime } from "date-fns-tz";
+import type { Metadata } from "next";
 
 export const revalidate = 0
+
+export const metadata: Metadata = {
+  title: "Prenotazione Confermata | FlowCal",
+  description: "FlowCal è l'app che permette ai clienti di negozi di servizi di prenotare appuntamenti facilmente, senza chiamate telefoniche.",
+};
 
 export default async function SuccessPage({
                                             params,

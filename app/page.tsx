@@ -4,11 +4,9 @@ import { BackgroundLines } from "@/components/ui/background-lines";
 import { Button } from "@/components/ui/button";
 import { SignInButton, SignUpButton, useUser } from "@clerk/nextjs";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 
 export default function Home() {
   const { isSignedIn } = useUser();
-  const router = useRouter();
 
   return (
     <BackgroundLines className="flex flex-col items-center h-screen justify-center px-4">
@@ -25,7 +23,9 @@ export default function Home() {
       </h2>
       <div className="relative flex space-x-2">
         {isSignedIn ? (
-          <Button className="rounded-full" onClick={() => router.push("/events")}>Vai alla dashboard</Button>
+          <a href={"/events"}>
+            <Button className="rounded-full">Vai alla dashboard</Button>
+          </a>
         ) : (
           <>
             <SignInButton>

@@ -1,4 +1,10 @@
 import { ReactNode } from "react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Prenota | FlowCal",
+  description: "FlowCal è l'app che permette ai clienti di negozi di servizi di prenotare appuntamenti facilmente, senza chiamate telefoniche.",
+};
 
 export default function PublicLayout({ children }: { children: ReactNode }) {
   return (

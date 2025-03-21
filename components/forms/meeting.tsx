@@ -23,7 +23,6 @@ import { Calendar } from "@/components/ui/calendar";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { isSameDay } from "date-fns";
 import { toast } from "sonner";
-import Loading from "@/app/(public)/book/[clerkUserId]/[eventId]/loading";
 import { LoaderCircleIcon } from "lucide-react";
 
 export function MeetingForm({
@@ -52,7 +51,8 @@ export function MeetingForm({
     });
 
     if (data?.error) {
-      toast.error("Errore durante la prenotazione. Si prega di riprovare più tardi.");
+      toast.error(data.error || "Errore durante la prenotazione. Si prega di riprovare più tardi.");
+      return;
     }
   }
 

@@ -26,22 +26,19 @@ export async function getValidTimesFromSchedule(
     duration: number
   }
 ) {
-  const start = timesInOrder[0]
-  const end = timesInOrder.at(-1)
+  try {
+    const start = timesInOrder[0]
+    const end = timesInOrder.at(-1)
 
-  console.log("timesInOrder", timesInOrder)
-  console.log("start: " + start)
-  console.log("end: " + end)
-  if (start == null || end == null) {
-    console.error("Start/End is null")
-    return []
-  }
+    if (start == null || end == null) {
+      throw Error("start/end times is null")
+    }
 
-  const supabase = await createClient()
-  const { data: schedule, error } = await supabase
-    .from("schedule")
-    .select(
-      `
+    const supabase = await createClient()
+    const { data: schedule, error } = await supabase
+      .from("schedule")
+      .select(
+        `
       id,
       timezone,
       schedule_availability (
@@ -50,52 +47,53 @@ export async function getValidTimesFromSchedule(
         end_time
       )
     `
-    )
-    .eq("clerk_user", event.clerk_user)
-    .maybeSingle()
+      )
+      .eq("clerk_user", event.clerk_user)
+      .maybeSingle()
 
-  if (schedule == null || error) {
-    Sentry.captureException(Error("Schedule fetching failed"))
-    console.error("Schedule fetching failed")
-    return []
-  }
-  console.log("Schedule fetching ok")
-
-  const groupedAvailabilities = Object.groupBy(
-    schedule.schedule_availability,
-    a => a.day
-  )
-
-  const eventTimes = await getCalendarEventTimes(event.clerk_user, {
-    start,
-    end,
-  })
-  console.log("EventTimes: " + eventTimes)
-
-  return timesInOrder.filter(intervalDate => {
-
-    const availabilities = getAvailabilities(
-      groupedAvailabilities,
-      intervalDate,
-      schedule.timezone
-    )
-    const eventInterval = {
-      start: intervalDate,
-      end: addMinutes(intervalDate, event.duration),
+    if (schedule == null || error) {
+      throw Error("Schedule fetching failed")
     }
 
-    return (
-      eventTimes.every(eventTime => {
-        return !areIntervalsOverlapping(eventTime, eventInterval)
-      }) &&
-      availabilities.some(availability => {
-        return (
-          isWithinInterval(eventInterval.start, availability) &&
-          isWithinInterval(eventInterval.end, availability)
-        )
-      })
+    const groupedAvailabilities = Object.groupBy(
+      schedule.schedule_availability,
+      a => a.day
     )
-  })
+
+    const eventTimes = await getCalendarEventTimes(event.clerk_user, {
+      start,
+      end,
+    })
+
+    return timesInOrder.filter(intervalDate => {
+
+      const availabilities = getAvailabilities(
+        groupedAvailabilities,
+        intervalDate,
+        schedule.timezone
+      )
+      const eventInterval = {
+        start: intervalDate,
+        end: addMinutes(intervalDate, event.duration),
+      }
+
+      return (
+        eventTimes.every(eventTime => {
+          return !areIntervalsOverlapping(eventTime, eventInterval)
+        }) &&
+        availabilities.some(availability => {
+          return (
+            isWithinInterval(eventInterval.start, availability) &&
+            isWithinInterval(eventInterval.end, availability)
+          )
+        })
+      )
+    })
+
+  } catch (error) {
+    Sentry.captureException(error);
+    return []
+  }
 }
 
 function getAvailabilities(
