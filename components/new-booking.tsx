@@ -46,10 +46,10 @@ export const NewBookingEmail = ({
               <strong>Servizio:</strong> {eventName}
             </Text>
             <Text style={text}>
-              <strong>Quando?:</strong> {formatDateTime(startTime)}
+              <strong>Quando:</strong> {formatDateTime(startTime)}
             </Text>
             <Text style={text}>
-              <strong>Note:</strong> {guestNotes ?? "Nessuna"}
+              <strong>Note:</strong> {guestNotes ?? " - "}
             </Text>
           </Section>
 
