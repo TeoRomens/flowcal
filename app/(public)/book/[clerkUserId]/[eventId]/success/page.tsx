@@ -5,6 +5,7 @@ import {createClient} from "@/lib/supabase/server";
 import {CircleCheck} from "lucide-react";
 import {Label} from "@/components/ui/label";
 import {Confetti} from "@/components/confetti";
+import { fromZonedTime, toZonedTime } from "date-fns-tz";
 
 export const revalidate = 0
 
@@ -31,7 +32,7 @@ export default async function SuccessPage({
 
   const clerk = await clerkClient()
   const calendarUser = await clerk.users.getUser(clerkUserId)
-  const startTimeDate = new Date(startTime)
+  const startTimeDate = toZonedTime(new Date(startTime), 'Europe/Rome')
 
   return (
       <div className="space-y-2">
