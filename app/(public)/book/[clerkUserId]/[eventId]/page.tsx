@@ -41,7 +41,7 @@ export default async function BookingEventPage({
   return (
     <>
       <h1 className="text-2xl sm:text-[32px] mb-3 font-semibold text-primary tracking-tight">Prenota
-        con {calendarUser.fullName}</h1>
+        con {calendarUser.publicMetadata["activity_name"] as string}</h1>
       <Badge variant="outline" className="gap-0 rounded-md px-2 py-1">
         {event.name}
       </Badge>

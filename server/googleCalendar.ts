@@ -73,7 +73,7 @@ export async function createCalendarEvent({
   }
 
   const calendarEvent = await google.calendar("v3").events.insert({
-    calendarId: "primary",
+    calendarId: calendarUser.privateMetadata["calendarId"] as string ?? "primary",
     auth: oAuthClient,
     sendUpdates: "all",
     requestBody: {

@@ -15,7 +15,7 @@ export default async function BookingPage({
   const { clerkUserId } = await params;
 
   const clerk = await clerkClient();
-  const { publicMetadata } = await clerk.users.getUser(clerkUserId).publicMetadata;
+  const user = await clerk.users.getUser(clerkUserId);
 
   const supabase = await createClient();
   const { data: events } = await supabase
@@ -28,7 +28,9 @@ export default async function BookingPage({
 
   return (
     <>
-      <h1 className="text-2xl sm:text-[32px] font-semibold mb-4 text-primary tracking-tight">Prenota con {publicMetadata["activity_name"]}</h1>
+      <h1 className="text-2xl sm:text-[32px] font-semibold mb-4 text-primary tracking-tight">
+        Prenota con {user.publicMetadata["activity_name"] as string}
+      </h1>
       <Label>Seleziona un servizio</Label>
       <div className="mt-4 grid gap-3 grid-cols-2 max-h-[70vh] overflow-y-auto">
         {events?.map((item) => (
