@@ -7,14 +7,14 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function sendEmail({
                                   guestName,
-                                  guestEmail,
+                                  guestPhone,
                                   guestNotes,
                                   startTime,
                                   eventName,
                                   clerkUserEmail
                                 }: {
   guestName: string
-  guestEmail: string
+  guestPhone: string
   startTime: Date
   guestNotes?: string | null
   eventName: string
@@ -26,7 +26,7 @@ export async function sendEmail({
     subject: "Nuova Prenotazione",
     react: NewBookingEmail({
       guestName: guestName,
-      guestEmail: guestEmail,
+      guestPhone: guestPhone,
       guestNotes: guestNotes,
       startTime: startTime,
       eventName: eventName

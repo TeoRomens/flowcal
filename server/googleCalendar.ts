@@ -49,7 +49,7 @@ export async function getCalendarEventTimes(
 export async function createCalendarEvent({
                                             clerkUserId,
                                             guestName,
-                                            guestEmail,
+                                            guestPhone,
                                             startTime,
                                             guestNotes,
                                             durationInMinutes,
@@ -57,7 +57,7 @@ export async function createCalendarEvent({
                                           }: {
   clerkUserId: string
   guestName: string
-  guestEmail: string
+  guestPhone: string
   startTime: Date
   guestNotes?: string | null
   durationInMinutes: number
@@ -77,15 +77,11 @@ export async function createCalendarEvent({
     auth: oAuthClient,
     sendUpdates: "all",
     requestBody: {
-      attendees: [
-        { email: guestEmail, displayName: guestName },
-        {
-          email: calendarUser.primaryEmailAddress?.emailAddress,
-          displayName: calendarUser.fullName,
-          responseStatus: "accepted"
-        }
-      ],
-      description: guestNotes ? `Note: ${guestNotes}` : undefined,
+      description: `
+        Nome: ${guestName}
+        Telefono: ${guestPhone}
+        Note: ${guestNotes ?? ""}
+      `,
       start: {
         dateTime: startTime.toISOString()
       },

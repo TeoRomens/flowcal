@@ -137,12 +137,12 @@ export function MeetingForm({
           />
           <FormField
             control={form.control}
-            name="guestEmail"
+            name="guestPhone"
             render={({ field }) => (
               <FormItem className="flex-1">
-                <FormLabel>Email</FormLabel>
+                <FormLabel>Telefono</FormLabel>
                 <FormControl>
-                  <Input type="email" {...field} />
+                  <Input type="tel" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

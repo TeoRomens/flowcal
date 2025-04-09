@@ -12,7 +12,7 @@ import { formatDateTime } from "@/lib/formatters";
 
 interface NewBookingEmailProps {
   guestName: string;
-  guestEmail: string;
+  guestPhone: string;
   guestNotes: string | null | undefined;
   startTime: Date;
   eventName: string;
@@ -20,7 +20,7 @@ interface NewBookingEmailProps {
 
 export const NewBookingEmail = ({
                                   guestName,
-                                  guestEmail,
+                                  guestPhone,
                                   guestNotes,
                                   startTime,
                                   eventName
@@ -40,7 +40,7 @@ export const NewBookingEmail = ({
               <strong>Nome:</strong> {guestName}
             </Text>
             <Text style={text}>
-              <strong>Email:</strong> {guestEmail}
+              <strong>Telefono:</strong> {guestPhone}
             </Text>
             <Text style={text}>
               <strong>Servizio:</strong> {eventName}

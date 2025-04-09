@@ -55,7 +55,7 @@ export async function createMeeting(
       clerkUserEmail: clerkUser.primaryEmailAddress?.emailAddress ?? "",
       startTime: data?.startTime,
       eventName: event.name,
-      guestEmail: data?.guestEmail,
+      guestPhone: data?.guestPhone,
       guestName: data?.guestName,
       guestNotes: data?.guestNotes,
     })

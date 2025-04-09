@@ -3,8 +3,11 @@ import { z } from "zod"
 
 const meetingSchemaBase = z.object({
   startTime: z.date().min(new Date()),
-  guestEmail: z.string().email().min(1, "Required"),
-  guestName: z.string().min(1, "Required"),
+  guestPhone: z
+      .string()
+      .min(1, "Obbligatorio")
+      .regex(/^\d+$/, "Il numero di telefono deve contenere solo cifre"),
+  guestName: z.string().min(1, "Obbligatorio"),
   guestNotes: z.string().optional(),
 })
 
