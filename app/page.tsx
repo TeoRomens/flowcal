@@ -2,7 +2,7 @@
 
 import { BackgroundLines } from "@/components/ui/background-lines";
 import { Button } from "@/components/ui/button";
-import { SignInButton, SignUpButton, useUser } from "@clerk/nextjs";
+import { useUser } from "@clerk/nextjs";
 import Image from "next/image";
 
 export default function Home() {
@@ -28,12 +28,12 @@ export default function Home() {
           </a>
         ) : (
           <>
-            <SignInButton>
+            <a href={"/signin"}>
               <Button className="rounded-full">Login</Button>
-            </SignInButton>
-            <SignUpButton>
+            </a>
+            <a href={"/signup"}>
               <Button variant="outline" className="rounded-full">Registrati</Button>
-            </SignUpButton>
+            </a>
           </>
         )}
       </div>
