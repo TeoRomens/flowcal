@@ -80,7 +80,6 @@ export default function Page() {
         </p>
       </SignUp.Step>
 
-
       <SignUp.Step
           name="continue"
           className="w-full space-y-6 rounded-2xl bg-white px-4 py-10 shadow-md ring-1 ring-black/5 sm:w-96 sm:px-8"

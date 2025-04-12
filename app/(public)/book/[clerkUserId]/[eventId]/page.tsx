@@ -48,7 +48,7 @@ export default async function BookingEventPage({
         <Badge variant="outline" className="gap-0 rounded-md px-2 py-1">
           {event.name}
         </Badge>
-        {message.length > 0 && (
+        {message?.length > 0 && (
             <div className="rounded-md border bg-blue-50 border-blue-500/50 px-4 py-3 text-blue-500">
               <p className="text-sm">
                 <InfoIcon
