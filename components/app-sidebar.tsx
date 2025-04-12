@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import {
-  Calendar,
+  Calendar, Settings,
 } from "lucide-react"
 import { NavMain } from "@/components/nav-main"
 import {AppSidebarHeader} from "@/components/sidebar-header"
@@ -27,6 +27,11 @@ const data = {
       title: "Disponibilità",
       url: "/schedule",
       icon: Calendar,
+    },
+    {
+      title: "Impostazioni",
+      url: "/settings",
+      icon: Settings,
     },
   ],
 }

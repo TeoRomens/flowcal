@@ -5,7 +5,6 @@ import { formatEventDescription } from "@/lib/formatters";
 import Link from "next/link";
 import { Label } from "@/components/ui/label";
 
-
 export default async function BookingPage({
                                             params
                                           }: {
@@ -23,8 +22,6 @@ export default async function BookingPage({
     .select()
     .eq("clerk_user", clerkUserId)
     .eq("active", true);
-
-  console.log(events);
 
   return (
     <>

@@ -28,7 +28,7 @@ export function NavMain({
         <SidebarGroupLabel>Generale</SidebarGroupLabel>
         <SidebarMenu>
           {items.map((item) => (
-              <SidebarMenuItem>
+              <SidebarMenuItem key={item.url}>
                 <Link href={item.url}>
                   <SidebarMenuButton
                       isActive={pathname === item.url}
