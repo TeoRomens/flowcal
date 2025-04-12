@@ -31,7 +31,7 @@ export default async function BookingPage({
       <Label>Seleziona un servizio</Label>
       <div className="mt-4 grid gap-3 grid-cols-2 max-h-[70vh] overflow-y-auto">
         {events?.map((item) => (
-          <Link
+          <a
             href={`/book/${clerkUserId}/${item.id}`}
             key={item.id}
             className="relative flex flex-col gap-1 rounded-lg border border-input p-4 shadow-sm shadow-black/5 hover:border-ring transition"
@@ -48,7 +48,7 @@ export default async function BookingPage({
             <p className="text-xs text-muted-foreground">
               {formatEventDescription(item.duration)}
             </p>
-          </Link>
+          </a>
         ))}
       </div>
     </>
